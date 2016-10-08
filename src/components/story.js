@@ -12,7 +12,7 @@ export default class Story extends Component {
 			.then(resp => resp.json())
 			.then(json => {
 				const { id, title, url, score, by, kids, time } = json;
-				this.setState({id, title, url, score, time, author: by, comments: kids});
+				kids ? this.setState({id, title, url, score, time, author: by, comments: kids.length}) : this.setState({id, title, url, score, time, author: by})
 			});
 	}
   render() {
@@ -22,8 +22,18 @@ export default class Story extends Component {
       		{this.state.title}
       	</div>
       	<div className="story-info">
-      		<span>{this.state.score} by {this.state.author} </span>
-      		<span>{moment.unix(this.state.time).fromNow()}</span>
+      		{ 
+      			this.state.comments === 0 ?
+      			<div>
+	      			<span>{this.state.score} by {this.state.author} </span>
+	      		  <span>{moment.unix(this.state.time).fromNow()}</span>
+	      		</div> : 
+	      		<div>
+	    		  	<span>{this.state.score} by {this.state.author} </span>
+	    		    <span>{moment.unix(this.state.time).fromNow()}</span>
+	    		    <span>|{`${this.state.comments} comments`}|</span>
+    		    </div>
+      		}
       	</div>
       </div>
     );

@@ -5,7 +5,7 @@ import Story from './story';
 export default class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { stories: [] };
+		this.state = { stories: [], pageNum: 0, storiesPerPage: 30 };
 	}
 
 	componentDidMount() {
@@ -14,14 +14,21 @@ export default class App extends Component {
 			.then(json => this.setState({ stories: json }));
 	}
 
+	handlePaginationClick = (data) => {
+		this.setState({pageNum: data.selected});
+	}
+
   render() {
-  	const renderedStories = this.state.stories.map((story, index) => {
-  		return (
-  			<Story 
-					key={index}
-					id={story} />
-			)
+  	let startingPoint = this.state.pageNum * this.state.storiesPerPage;
+  	const currentStories = this.state.stories.slice(startingPoint, startingPoint + this.state.storiesPerPage);
+  	const renderedStories = currentStories.map((story, index) => {
+  		return ( 
+  			<Story
+					key={index} 
+					id={story} /> 
+  		);
   	});
+  	console.log(renderedStories);
 
     return (
       <div>
@@ -29,9 +36,10 @@ export default class App extends Component {
       	<ReactPaginate 
       		previousLabel={'previous'}
       		nextLabel={'next'} 
-      		pageNum={Math.ceil(this.state.stories.length)} 
+      		pageNum={Math.ceil(this.state.stories.length/this.state.storiesPerPage)} 
       		marginPagesDisplayed={2} 
-      		pageRangeDisplayed={5} />
+      		pageRangeDisplayed={5} 
+      		clickCallback={this.handlePaginationClick} />
       </div>
     );
   }

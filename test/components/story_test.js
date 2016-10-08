@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import Story from '../../src/components/story';
 
 describe('Story' , () => {
@@ -8,6 +8,7 @@ describe('Story' , () => {
 
 	beforeEach(() => {
 		component = mount(<Story />);
+		component.setProps({bar: 'baz', id: 1});
 	});
 
   it('renders something', () => {
@@ -15,11 +16,15 @@ describe('Story' , () => {
   });
 
   it('allows us to set props', () => {
-  	component = mount(<Story bar="baz" />);
   	expect(component.props().bar).to.equal('baz');
   });
 
   it('fetches the story with the id passed into it', () => {
-  	component = mount(<Story id="1" />);
+  	expect(component.containsAllMatchingElements([
+  		<a href="http://ycombinator.com">Y Combinator</a>,
+  		<span>61</span>,
+  		<span>5 comments</span>,
+  		<a href="https://news.ycombinator.com/user?id=pg">pg</a>,
+  	])).to.be.true;
   });
 });

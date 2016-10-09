@@ -20,7 +20,7 @@ export default class App extends Component {
 
   render() {
   	let startingPoint = this.state.pageNum * this.state.storiesPerPage;
-  	const currentStories = this.state.stories.slice(startingPoint, startingPoint + this.state.storiesPerPage);
+  	const currentStories = this.state.stories.slice(startingPoint, Number(startingPoint + this.state.storiesPerPage));
   	const renderedStories = currentStories.map((story, index) => {
   		return ( 
   			<Story
@@ -28,7 +28,6 @@ export default class App extends Component {
 					id={story} /> 
   		);
   	});
-  	console.log(renderedStories);
 
     return (
       <div>

@@ -37,3 +37,11 @@
 ul {
  list-style: none;
 }
+
+.story-title {
+	font-size: .9em;
+}
+
+.story-info {
+	font-size: .75em;
+}

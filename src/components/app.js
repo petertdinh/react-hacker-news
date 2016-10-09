@@ -26,6 +26,7 @@ export default class App extends Component {
   		return ( 
   			<Story
 					key={index} 
+          storyNum={index+startingPoint+1}
 					id={story} /> 
   		);
   	});

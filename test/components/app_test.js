@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import sinon from 'sinon';
 import App from '../../src/components/app';
 import Story from '../../src/components/story';
@@ -25,10 +25,10 @@ describe('App' , () => {
   });
 
   it('renders 30 Story components', () => {
-  	expect(component.find(Story)).to.have.length(30);
+  	expect(component.find(Story)).to.have.lengthOf(30);
   });
 
   it('features pagination', () => {
-  	expect(component.find(ReactPaginate)).to.have.length(1);
+  	expect(component.find(ReactPaginate)).to.have.lengthOf(1);
   });
 });

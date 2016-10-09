@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactPaginate from 'react-paginate';
 import Story from './story';
+import NavBar from './nav_bar';
 
 export default class App extends Component {
 	constructor(props) {
@@ -31,6 +32,7 @@ export default class App extends Component {
 
     return (
       <div>
+      	<NavBar />
       	<div>{renderedStories}</div>
       	<ReactPaginate 
       		previousLabel={'previous'}

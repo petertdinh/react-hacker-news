@@ -1,9 +1,21 @@
+img {
+	margin: 0 1em 0 -1em;
+}
+
+.title {
+	margin-right: 1em;
+}
+
 .navbar {
 	background-color: black;
 }
 
 .title {
 	color: white;
+}
+
+.btn {
+	margin-right: .5em;
 }
 
 .react-paginate {
@@ -20,15 +32,19 @@
 }
 
 .active {
-	color: skyblue !important;
+	color: cyan !important;
 }
 
 .page, .break {
 	color: white;
 }
 
+.break {
+	cursor: default;
+}
+
 .prev, .next {
-	color: skyblue;
+	color: cyan;
 	padding: 1em 1em 1em 1em;
 	font-size: 1em;
 	cursor: pointer;

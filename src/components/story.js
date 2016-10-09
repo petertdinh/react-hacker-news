@@ -19,8 +19,7 @@ export default class Story extends Component {
 		fetch(`https://hacker-news.firebaseio.com/v0/item/${props.id}.json`)
 			.then(resp => resp.json())
 			.then(json => {
-				const { id, title, url, score, by, descendants, time } = json;
-				const { storyNum } = props;
+				const { id, title, url, score, by, descendants, time } = json, { storyNum } = props;
 				this.setState({id, title, url, score, time, storyNum, author: by, comments: descendants});
 			});
 	}

@@ -8,18 +8,14 @@ describe('Story' , () => {
 
 	beforeEach(() => {
 		component = mount(<Story />);
-		component.setProps({bar: 'baz', id: 1});
 	});
 
   it('renders something', () => {
     expect(component).to.exist;
   });
 
-  it('allows us to set props', () => {
-  	expect(component.props().bar).to.equal('baz');
-  });
-
   it('fetches the story with the id passed into it', () => {
+    component.setProps({id: 1});
   	expect(component.containsAllMatchingElements([
   		<a href="http://ycombinator.com">Y Combinator</a>,
   		<span>61</span>,

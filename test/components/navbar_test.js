@@ -19,8 +19,13 @@ describe('NavBar' , () => {
   });
 
   it('has three buttons, each for Top, Newest, and Best stories', () => {
-    expect(component.find('button.navbar-btn.top')).to.have.lengthOf(1);
-    expect(component.find('button.navbar-btn.new')).to.have.lengthOf(1);
-    expect(component.find('button.navbar-btn.best')).to.have.lengthOf(1);
+    expect(component.find('button').hasClass('top')).to.be.true;
+    expect(component.find('button').hasClass('new')).to.be.true;
+    expect(component.find('button').hasClass('best')).to.be.true;
+  });
+
+  it('allows us to set props', () => {
+    component.setProps({bar: 'baz', id: 1});
+    expect(component.props().bar).to.equal('baz');
   });
 });

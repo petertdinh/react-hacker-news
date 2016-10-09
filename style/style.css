@@ -5,3 +5,35 @@
 .title {
 	color: white;
 }
+
+.react-paginate {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: black;
+	border-radius: 5px;
+}
+
+.page, .break, .active {
+	padding: 1em 1em 1em 1em;
+	cursor: pointer;
+}
+
+.active {
+	color: skyblue !important;
+}
+
+.page, .break {
+	color: white;
+}
+
+.prev, .next {
+	color: skyblue;
+	padding: 1em 1em 1em 1em;
+	font-size: 1em;
+	cursor: pointer;
+}
+
+ul {
+ list-style: none;
+}

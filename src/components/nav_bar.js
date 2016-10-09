@@ -6,7 +6,7 @@ export default class NavBar extends Component {
 				<nav className="navbar navbar-default">
 				  <div className="container-fluid">
 				    <div className="navbar-header">
-				      <img alt="react-logo" src="https://upload.wikimedia.org/wikipedia/commons/5/57/React.js_logo.svg" height={32} width={32}/>
+				      <img alt="react-logo" src="http://red-badger.com/blog/wp-content/uploads/2015/04/react-logo-1000-transparent.png" height={32} width={32}/>
 				      <span className="title" >React Hacker News</span>
 			        <button type="button" className="top btn btn-default navbar-btn">Top</button>
 			        <button type="button" className="new btn btn-default navbar-btn">New</button>

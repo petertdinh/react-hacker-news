@@ -21,7 +21,7 @@ export default class App extends Component {
 
   render() {
   	let startingPoint = this.state.pageNum * this.state.storiesPerPage;
-  	const currentStories = this.state.stories.slice(startingPoint, Number(startingPoint + this.state.storiesPerPage));
+  	const currentStories = this.state.stories.slice(startingPoint, startingPoint + this.state.storiesPerPage);
   	const renderedStories = currentStories.map((story, index) => {
   		return ( 
   			<Story
@@ -35,12 +35,18 @@ export default class App extends Component {
       	<NavBar />
       	<div>{renderedStories}</div>
       	<ReactPaginate 
-      		previousLabel={'previous'}
-      		nextLabel={'next'} 
+      		previousLabel="<"
+      		nextLabel=">" 
       		pageNum={Math.ceil(this.state.stories.length/this.state.storiesPerPage)} 
       		marginPagesDisplayed={2} 
       		pageRangeDisplayed={5} 
-      		clickCallback={this.handlePaginationClick} />
+      		clickCallback={this.handlePaginationClick}
+          containerClassName="react-paginate" 
+          pageClassName="page"
+          previousClassName="prev"
+          nextClassName="next"
+          breakClassName="break"
+          activeClassName="active" />
       </div>
     );
   }

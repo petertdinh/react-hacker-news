@@ -7,7 +7,7 @@ import NavBar from './nav_bar';
 export default class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { stories: [], pageNum: 0, storiesPerPage: 30, currentType: 'top', hidden: '' };
+		this.state = { stories: [], pageNum: 0, storiesPerPage: 30, currentType: 'top', hidden: '', wait: 900 };
 	}
 
 	componentDidMount() {
@@ -15,6 +15,7 @@ export default class App extends Component {
 	}
 
   componentDidUpdate() {
+    //to bring the user to the top of the page
     ReactDOM.findDOMNode(this).scrollIntoView();
   }
 
@@ -31,12 +32,12 @@ export default class App extends Component {
     this.toggleLoader();
 	}
 
+  //because of the asynchronous nature of the each of the stories, I implemented a loader to ease the transition
   toggleLoader = () => {
     this.setState({hidden: ''});
-    const that = this;
     setTimeout(() => {
-      that.setState({hidden: 'hidden'});
-    }, 1000);
+      this.setState({hidden: 'hidden'});
+    }, this.state.wait);
   }
 
   render() {
@@ -69,7 +70,8 @@ export default class App extends Component {
           previousClassName="prev"
           nextClassName="next"
           breakClassName="break"
-          activeClassName="active" />
+          activeClassName="active"
+          disabledClassName="disabled-transition" />
       </div>
     );
   }

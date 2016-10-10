@@ -24,6 +24,8 @@ img {
 	justify-content: space-between;
 	background-color: black;
 	border-radius: 5px;
+	padding: 0px;
+	height: 58px;
 }
 
 .page, .break, .active {
@@ -31,16 +33,19 @@ img {
 	cursor: pointer;
 }
 
+
 .active {
-	color: cyan !important;
+	color: white !important;
+	cursor: default !important;
 }
 
 .page, .break {
-	color: white;
+	color: cyan;
 }
 
 .break {
 	cursor: default;
+	color: white;
 }
 
 .prev, .next {
@@ -48,6 +53,11 @@ img {
 	padding: 1em 1em 1em 1em;
 	font-size: 1em;
 	cursor: pointer;
+}
+
+.disabled-transition {
+	color: white;
+	cursor: default;
 }
 
 ul {
@@ -85,5 +95,4 @@ ul {
 
 .hidden {
 	visibility: hidden;
-	height: 1170px;
 }

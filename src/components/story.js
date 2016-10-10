@@ -23,7 +23,9 @@ export default class Story extends Component {
 			.then(resp => resp.json())
 			.then(json => {
 				const { id, title, url, score, by, descendants, time } = json, { storyNum } = props;
-				this.setState({id, title, url, score, time, storyNum, author: by, comments: descendants});
+				//when a story isn't linked to an external site, no url is provided
+				url ? this.setState({ url }) : this.setState({url: `https://news.ycombinator.com/item?id=${id}`})
+				this.setState({id, title, score, time, storyNum, author: by, comments: descendants});
 			});
 	}
 

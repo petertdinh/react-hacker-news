@@ -4,15 +4,18 @@ import moment from 'moment';
 export default class Story extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { id: 0, title: '', url: '', score: 0, author: '', time: 0, comments: 0, storyNum: 0 }
+		this.state = { id: 0, title: '', url: '', score: 0, author: '', time: 0, comments: 0, storyNum: 0, hidden: 'hidden', wait: 1000 }
 	}
 
 	componentDidMount() {
 		this.mapStoryToState(this.props);
+		this.makeStoryVisible();
 	}
 
 	componentWillReceiveProps(nextProps) {
+		this.setState({hidden: 'hidden'});
 		this.mapStoryToState(nextProps);
+		this.makeStoryVisible();
 	}
 
 	mapStoryToState = (props) => {
@@ -24,9 +27,16 @@ export default class Story extends Component {
 			});
 	}
 
+	makeStoryVisible = () => {
+		const that = this;
+		setTimeout(() => {
+			that.setState({hidden: ''});
+		}, that.state.wait);
+	}
+
   render() {
     return (
-      <div>
+      <div className={this.state.hidden}>
       	<div className="story-title">
       		<span>{this.state.storyNum}. </span>
       		<a href={this.state.url}>{this.state.title}</a>

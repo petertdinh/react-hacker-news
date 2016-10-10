@@ -28,7 +28,6 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
-    "axios": "^0.14.0",
     "babel-preset-stage-1": "^6.1.18",
     "es6-promise": "^4.0.5",
     "isomorphic-fetch": "^2.2.1",
@@ -37,10 +36,6 @@
     "react": "^0.14.3",
     "react-addons-create-fragment": "^15.3.2",
     "react-dom": "^0.14.3",
-    "react-paginate": "^2.2.3",
-    "react-redux": "^4.0.0",
-    "react-router": "^2.0.1",
-    "redux": "^3.0.4",
-    "redux-thunk": "^2.1.0"
+    "react-paginate": "^2.2.3"
   }
 }

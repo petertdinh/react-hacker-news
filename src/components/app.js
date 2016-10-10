@@ -7,7 +7,7 @@ import NavBar from './nav_bar';
 export default class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { stories: [], pageNum: 0, storiesPerPage: 30, currentType: 'top' };
+		this.state = { stories: [], pageNum: 0, storiesPerPage: 30, currentType: 'top', hidden: '' };
 	}
 
 	componentDidMount() {
@@ -23,11 +23,21 @@ export default class App extends Component {
       .then(resp => resp.json())
       .then(json => this.setState({ stories: json }));
     this.setState({currentType: type});
+    this.toggleLoader();
   }
 
 	setActivePage = (data) => {
 		this.setState({pageNum: data.selected});
+    this.toggleLoader();
 	}
+
+  toggleLoader = () => {
+    this.setState({hidden: ''});
+    const that = this;
+    setTimeout(() => {
+      that.setState({hidden: 'hidden'});
+    }, 1000);
+  }
 
   render() {
   	let startingPoint = this.state.pageNum * this.state.storiesPerPage;
@@ -35,7 +45,7 @@ export default class App extends Component {
   	const renderedStories = currentStoriesOnPage.map((story, index) => {
   		return ( 
   			<Story
-					key={index} 
+					key={index}
           storyNum={index+startingPoint+1}
 					id={story} /> 
   		);
@@ -45,6 +55,7 @@ export default class App extends Component {
       <div>
       	<NavBar 
           setActiveStories={this.setActiveStories} />
+        <div className={`loader ${this.state.hidden}`}></div>
       	<div>{renderedStories}</div>
       	<ReactPaginate 
       		previousLabel="<"

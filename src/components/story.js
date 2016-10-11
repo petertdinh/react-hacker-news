@@ -47,11 +47,15 @@ export default class Story extends Component {
       		{
       			this.state.comments === 0 ?
       			<div>
-	      			<span>{`${this.state.score} points by ${this.state.author} ${moment.unix(this.state.time).fromNow()}`}</span>
+	      			<span>{`${this.state.score} points by `}</span>
+	      			<a href={`https://news.ycombinator.com/user?id=${this.state.author}`}>{this.state.author}</a>
+	      			<span>{` ${moment.unix(this.state.time).fromNow()}`}</span>
 	      		</div> : 
-	      		<div>
-	    		  	<span>{`${this.state.score} points by ${this.state.author} ${moment.unix(this.state.time).fromNow()} | ${this.state.comments} comments |`}</span>
-    		    </div>
+      			<div>
+	      			<span>{`${this.state.score} points by `}</span>
+	      			<a href={`https://news.ycombinator.com/user?id=${this.state.author}`}>{this.state.author}</a>
+	      			<span>{` ${moment.unix(this.state.time).fromNow()} | ${this.state.comments} comments |`}</span>
+	      		</div>
       		}
       	</div>
       </div>

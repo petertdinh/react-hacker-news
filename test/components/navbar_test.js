@@ -1,31 +1,36 @@
 import React from 'react';
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import NavBar from '../../src/components/nav_bar';
 
 describe('NavBar' , () => {
-	let component;
+	let mountedComponent;
+  let shallowComponent;
 
 	beforeEach(() => {
-		component = shallow(<NavBar />);
+		mountedComponent = mount(<NavBar />);
+    shallowComponent = shallow(<NavBar />);
 	});
 
   it('to be a nav element', () => {
-    expect(component.type()).to.equal('nav');
+    expect(shallowComponent.type()).to.equal('nav');
   });
 
-  it('uses the Bootstrap NavBar classes', () => {
-    expect(component.hasClass('navbar-default')).to.be.true;
+  it('uses Bootstrap NavBar classes', () => {
+    expect(shallowComponent.hasClass('navbar-default')).to.be.true;
   });
 
-  it('has three buttons, each for Top, Newest, and Best stories', () => {
-    expect(component.find('button').hasClass('top')).to.be.true;
-    expect(component.find('button').hasClass('new')).to.be.true;
-    expect(component.find('button').hasClass('best')).to.be.true;
+  it('lets the user navigate between six of the stories', () => {
+    expect(mountedComponent.childAt(0).childAt(0).childAt(2).text()).to.be.equal('Top');
+    expect(mountedComponent.childAt(0).childAt(0).childAt(3).text()).to.be.equal('New');
+    expect(mountedComponent.childAt(0).childAt(0).childAt(4).text()).to.be.equal('Best');
+    expect(mountedComponent.childAt(0).childAt(0).childAt(5).text()).to.be.equal('Ask');
+    expect(mountedComponent.childAt(0).childAt(0).childAt(6).text()).to.be.equal('Show');
+    expect(mountedComponent.childAt(0).childAt(0).childAt(7).text()).to.be.equal('Job');
   });
 
   it('allows us to set props', () => {
-    component.setProps({id: 1});
-    expect(component.props().id).to.equal(1);
+    mountedComponent.setProps({id: 1});
+    expect(mountedComponent.props().id).to.equal(1);
   });
 });

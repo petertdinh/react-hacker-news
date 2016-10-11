@@ -24,7 +24,7 @@ describe('App' , () => {
   it('calls componentDidMount', () => {
   	sinon.spy(App.prototype, 'componentDidMount');
     component = mount(<App />);
-    expect(App.prototype.componentDidMount.calledOnce).to.equal(true);
+    expect(App.prototype.componentDidMount.calledOnce).to.be.true;
   });
 
   it('renders x amount of Story components', () => {
@@ -39,12 +39,17 @@ describe('App' , () => {
   it('it forces you back to the first page when you select a different story type', () => {
     component.setState({stories: [12680329, 12677279,12680380], storiesPerPage: 1, forceSelected: 0});
     const prevButton = component.find(ReactPaginate).childAt(0);
-    const navBarButton = component.find(NavBar).childAt(0).childAt(0).childAt(3);
     const numberTwo = component.find(ReactPaginate).childAt(2);
+    const navBarButton = component.find(NavBar).childAt(0).childAt(0).childAt(3);
+    //the prevButton is disabled when the first page is selected
+    //a selected page also has the 'selected' class but for some reason the enzyme methods weren't giving me the correct assertion
     expect(prevButton.hasClass('disabled')).to.be.true;
     numberTwo.simulate('click');
+    //page 2 is click so the prevButton should now be enabled
     expect(prevButton.hasClass('disabled')).to.be.false;
     navBarButton.simulate('click');
+    //newest stories is selected
     expect(prevButton.hasClass('disabled')).to.be.true;
+    //back to page 1
   });
 });

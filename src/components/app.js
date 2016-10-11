@@ -17,18 +17,18 @@ export default class App extends Component {
 
   componentDidUpdate() {
     //to bring the user to the top of the page on new page select, comment out line to test component
-    // ReactDOM.findDOMNode(this).scrollIntoView();
+    ReactDOM.findDOMNode(this).scrollIntoView();
   }
 
   //users can choose between the top, newest, or best stories. defaults to top on page load
   setActiveStories = (type) => {
     if(type !== this.state.currentStories) {
-    fetch(`https://hacker-news.firebaseio.com/v0/${type}stories.json?print=pretty`)
-      .then(resp => resp.json())
-      .then(json => this.setState({ stories: json }));
-    this.toggleLoader();
-    //send user back to the first 30 stories on selection
-    this.setState({currentStories: type, currentPage: 0, forceSelected: 0});
+      fetch(`https://hacker-news.firebaseio.com/v0/${type}stories.json?print=pretty`)
+        .then(resp => resp.json())
+        .then(json => this.setState({ stories: json }));
+      this.toggleLoader();
+      //send user back to the first 30 stories on selection
+      this.setState({currentStories: type, currentPage: 0, forceSelected: 0});
     }
   }
 
@@ -59,7 +59,8 @@ export default class App extends Component {
     return (
       <div>
       	<NavBar 
-          setActiveStories={this.setActiveStories} />
+          setActiveStories={this.setActiveStories}
+          active={this.state.currentStories} />
         <div className={`loader ${this.state.hidden}`}></div>
       	<div>{renderedStories}</div>
       	<ReactPaginate 

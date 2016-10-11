@@ -28,13 +28,13 @@ img {
 	height: 58px;
 }
 
-.page, .break, .active {
+.page, .break, .selected {
 	padding: 1em 1em 1em 1em;
 	cursor: pointer;
 }
 
 
-.active {
+.selected {
 	color: white !important;
 	cursor: default !important;
 }
@@ -48,14 +48,14 @@ img {
 	color: white;
 }
 
-.prev, .next {
+.previous, .next {
 	color: cyan;
 	padding: 1em 1em 1em 1em;
 	font-size: 1em;
 	cursor: pointer;
 }
 
-.disabled-transition {
+.disabled {
 	color: white;
 	cursor: default;
 }
@@ -95,4 +95,8 @@ ul {
 
 .hidden {
 	visibility: hidden;
+}
+
+.btn-default {
+	cursor: default !important;
 }

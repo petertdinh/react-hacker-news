@@ -29,6 +29,7 @@ export default class Story extends Component {
 			});
 	}
 
+	//stories are rendered after the asynchronous operation
 	makeStoryVisible = () => {
 		setTimeout(() => {
 			this.setState({hidden: ''});
@@ -43,7 +44,7 @@ export default class Story extends Component {
       		<a href={this.state.url}>{this.state.title}</a>
       	</div>
       	<div className="story-info">
-      		{ 
+      		{
       			this.state.comments === 0 ?
       			<div>
 	      			<span>{`${this.state.score} points by ${this.state.author} ${moment.unix(this.state.time).fromNow()}`}</span>

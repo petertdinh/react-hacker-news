@@ -25,7 +25,7 @@ describe('NavBar' , () => {
   });
 
   it('allows us to set props', () => {
-    component.setProps({bar: 'baz', id: 1});
-    expect(component.props().bar).to.equal('baz');
+    component.setProps({id: 1});
+    expect(component.props().id).to.equal(1);
   });
 });

@@ -7,7 +7,7 @@ import NavBar from './nav_bar';
 export default class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { stories: [], currentPage: 0, storiesPerPage: 30, hidden: '', wait: 900, forceSelected: 0 };
+		this.state = { stories: [], currentPage: 0, currentStories: '', storiesPerPage: 30, hidden: '', wait: 900, forceSelected: 0 };
 	}
 
 	componentDidMount() {
@@ -16,18 +16,20 @@ export default class App extends Component {
 	}
 
   componentDidUpdate() {
-    //to bring the user to the top of the page
-    ReactDOM.findDOMNode(this).scrollIntoView();
+    //to bring the user to the top of the page on new page select, comment out line to test component
+    // ReactDOM.findDOMNode(this).scrollIntoView();
   }
 
   //users can choose between the top, newest, or best stories. defaults to top on page load
   setActiveStories = (type) => {
+    if(type !== this.state.currentStories) {
     fetch(`https://hacker-news.firebaseio.com/v0/${type}stories.json?print=pretty`)
       .then(resp => resp.json())
       .then(json => this.setState({ stories: json }));
     this.toggleLoader();
     //send user back to the first 30 stories on selection
-    this.setState({currentPage: 0,forceSelected: 0});
+    this.setState({currentStories: type, currentPage: 0, forceSelected: 0});
+    }
   }
 
   //callback that's passed into ReactPaginate module
@@ -69,11 +71,6 @@ export default class App extends Component {
       		clickCallback={this.setActivePage}
           containerClassName="react-paginate" 
           pageClassName="page"
-          previousClassName="prev"
-          nextClassName="next"
-          breakClassName="break"
-          activeClassName="active"
-          disabledClassName="disabled-transition"
           forceSelected={this.state.forceSelected} />
       </div>
     );

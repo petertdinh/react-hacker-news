@@ -36,4 +36,10 @@ describe('Story' , () => {
       done();
     }, 500);
   });
+
+  it('links to external sources', () => {
+    wrapper.setState({id: 1, url: 'http://ycombinator.com', comments: 1});
+    expect(wrapper.ref('title').prop('href')).to.equal('http://ycombinator.com');
+    expect(wrapper.ref('comments').prop('href')).to.equal('https://news.ycombinator.com/item?id=1');
+  });
 });

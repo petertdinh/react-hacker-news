@@ -39,10 +39,12 @@ describe('App' , () => {
   it('it forces you back to the first page when you select a different story type', () => {
     component.setState({stories: [12680329, 12677279,12680380], storiesPerPage: 1, forceSelected: 0});
     const prevButton = component.find(ReactPaginate).childAt(0);
-    const navBarButton = component.find(NavBar).childAt(0).childAt(0).childAt(2);
+    const navBarButton = component.find(NavBar).childAt(0).childAt(0).childAt(3);
     const numberTwo = component.find(ReactPaginate).childAt(2);
     expect(prevButton.hasClass('disabled')).to.be.true;
     numberTwo.simulate('click');
     expect(prevButton.hasClass('disabled')).to.be.false;
+    navBarButton.simulate('click');
+    expect(prevButton.hasClass('disabled')).to.be.true;
   });
 });

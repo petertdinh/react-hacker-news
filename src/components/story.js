@@ -53,7 +53,7 @@ export default class Story extends Component {
 	      		</div> : 
       			<div className="story-info">
 	      			<span>{`${this.state.score} points by `}</span>
-	      			<a href={`https://news.ycombinator.com/user?id=${this.state.author}`}>{this.state.author}</a>
+	      			<a ref="author" href={`https://news.ycombinator.com/user?id=${this.state.author}`}>{this.state.author}</a>
 	      			<span>{` ${moment.unix(this.state.time).fromNow()} `}</span>
 	      			<span>| <a ref="comments" href={`https://news.ycombinator.com/item?id=${this.state.id}`}>{`${this.state.comments} comments`}</a> |</span>
 	      		</div>

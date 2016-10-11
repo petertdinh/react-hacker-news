@@ -28,7 +28,7 @@ describe('NavBar' , () => {
     expect(mountedWrapper.childAt(0).childAt(0).childAt(4).text()).to.be.equal('Best');
     expect(mountedWrapper.childAt(0).childAt(0).childAt(5).text()).to.be.equal('Ask');
     expect(mountedWrapper.childAt(0).childAt(0).childAt(6).text()).to.be.equal('Show');
-    expect(mountedWrapper.childAt(0).childAt(0).childAt(7).text()).to.be.equal('Job');
+    expect(mountedWrapper.childAt(0).childAt(0).childAt(7).text()).to.be.equal('Jobs');
   });
 
   it('allows us to set props', () => {

@@ -4,13 +4,14 @@ import Button from './button';
 export default class NavBar extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { buttons: ['Top', 'New', 'Best', 'Ask', 'Show', 'Job'], activeClass: 'btn-default', inactiveClass: 'btn-info' };
+		//to make this component a little bit more reusable, one can set get rid of the line below and pass buttons in as props
+		this.state = { buttons: ['Top', 'New', 'Best', 'Ask', 'Show', 'Job'] };
 	}
 	render() {
 		const buttons = this.state.buttons.map((button, index) => {
 			return <Button 
 								key={index} 
-								text={button}
+								text={button === 'Job' ? 'Jobs' : button}
 								active={this.props.active}
 								handleButtonClick={this.props.setActiveStories.bind(null, button.toLowerCase())} />
 		});

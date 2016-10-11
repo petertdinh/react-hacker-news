@@ -10,7 +10,6 @@ import ReactPaginate from 'react-paginate';
 import fetch from 'isomorphic-fetch';
 
 describe('App' , () => {
-  //comment out line 20 in App before running this test
 	let wrapper;
 
 	beforeEach(() => {

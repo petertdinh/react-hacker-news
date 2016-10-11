@@ -14,7 +14,7 @@ describe('NavBar' , () => {
     shallowWrapper = shallow(<NavBar setActiveStories={setActiveStories} />);
 	});
 
-  it('to be a nav element', () => {
+  it('is a nav element', () => {
     expect(shallowWrapper.type()).to.equal('nav');
   });
 

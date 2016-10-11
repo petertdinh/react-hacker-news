@@ -19,6 +19,7 @@ export default class Story extends Component {
 	}
 
 	mapStoryToState = (props) => {
+		//a rendered story requires an asynchronous call to the api to fetch the story data
 		fetch(`https://hacker-news.firebaseio.com/v0/item/${props.id}.json`)
 			.then(resp => resp.json())
 			.then(json => {
@@ -29,7 +30,7 @@ export default class Story extends Component {
 			});
 	}
 
-	//stories are rendered after the asynchronous operation
+	//stories are rendered after the asynchronous operation to ease transitions
 	makeStoryVisible = () => {
 		setTimeout(() => {
 			this.setState({hidden: ''});
@@ -55,7 +56,7 @@ export default class Story extends Component {
 	      			<span>{`${this.state.score} points by `}</span>
 	      			<a ref="author" href={`https://news.ycombinator.com/user?id=${this.state.author}`}>{this.state.author}</a>
 	      			<span>{` ${moment.unix(this.state.time).fromNow()} `}</span>
-	      			<span>| <a ref="comments" href={`https://news.ycombinator.com/item?id=${this.state.id}`}>{`${this.state.comments} comments`}</a> |</span>
+	      			<span>| <a ref="comments" href={`https://news.ycombinator.com/item?id=${this.state.id}`}>{this.state.comments === 1 ? `${this.state.comments} comment` : `${this.state.comments} comments` }</a> |</span>
 	      		</div>
       		}
       	</div>

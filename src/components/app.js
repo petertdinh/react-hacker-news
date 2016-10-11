@@ -17,13 +17,15 @@ export default class App extends Component {
 	}
 
   componentDidUpdate() {
+    //on page change, user is taken back to the top
     animateScroll.scrollTo(0, {
       smooth: true,
       duration: 200
     });
   }
 
-  //users can choose between the top, newest, or best stories. defaults to top on page load
+  //users can navigate between the top, newest, best, ask, show, and job stories. defaults to top on page load.
+  //each call is a fetch to the HN API
   setActiveStories = (type) => {
     if(type !== this.state.currentStories) {
       fetch(`https://hacker-news.firebaseio.com/v0/${type}stories.json?print=pretty`)

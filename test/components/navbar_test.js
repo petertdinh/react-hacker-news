@@ -4,17 +4,14 @@ import { mount, shallow } from 'enzyme';
 import App from '../../src/components/app';
 import NavBar from '../../src/components/nav_bar';
 
-const fillerFunc = () => {};
-
 describe('NavBar' , () => {
 	let mountedWrapper;
   let shallowWrapper;
+  const { setActiveStories } = mount(<App />).node;
 
 	beforeEach(() => {
-		mountedWrapper = mount(<NavBar 
-                            setActiveStories={fillerFunc} />);
-    shallowWrapper = shallow(<NavBar 
-                              setActiveStories={fillerFunc} />);
+		mountedWrapper = mount(<NavBar setActiveStories={setActiveStories} />);
+    shallowWrapper = shallow(<NavBar setActiveStories={setActiveStories} />);
 	});
 
   it('to be a nav element', () => {

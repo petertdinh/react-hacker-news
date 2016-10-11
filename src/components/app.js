@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import { findDOMNode } from 'react-dom';
+import { animateScroll } from 'react-scroll';
 import ReactPaginate from 'react-paginate';
 import Story from './story';
 import NavBar from './nav_bar';
@@ -16,8 +17,10 @@ export default class App extends Component {
 	}
 
   componentDidUpdate() {
-    //to bring the user to the top of the page on new page select, comment out line to test component
-    // ReactDOM.findDOMNode(this).scrollIntoView();
+    animateScroll.scrollTo(0, {
+      smooth: true,
+      duration: 200
+    });
   }
 
   //users can choose between the top, newest, or best stories. defaults to top on page load

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { animateScroll } from 'react-scroll';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
@@ -11,36 +11,37 @@ import fetch from 'isomorphic-fetch';
 
 describe('App' , () => {
   //comment out line 20 in App before running this test
-	let component;
+	let wrapper;
 
 	beforeEach(() => {
-		component = mount(<App />);
+		wrapper = mount(<App />);
+    
 	});
 
   it('renders something', () => {
-    expect(component).to.exist;
+    expect(wrapper).to.exist;
   });
 
   it('calls componentDidMount', () => {
   	sinon.spy(App.prototype, 'componentDidMount');
-    component = mount(<App />);
+    wrapper = mount(<App />);
     expect(App.prototype.componentDidMount.calledOnce).to.be.true;
   });
 
   it('renders x amount of Story components', () => {
-    component.setState({stories: [12680329, 12677279,12680380], storiesPerPage: 3});
-  	expect(component.find(Story)).to.have.lengthOf(3);
+    wrapper.setState({stories: [12680329, 12677279,12680380], storiesPerPage: 3});
+  	expect(wrapper.find(Story)).to.have.lengthOf(3);
   });
 
   it('features pagination', () => {
-  	expect(component.find(ReactPaginate)).to.have.lengthOf(1);
+  	expect(wrapper.find(ReactPaginate)).to.have.lengthOf(1);
   });
 
-  it('it forces you back to the first page when you select a different story type', () => {
-    component.setState({stories: [12680329, 12677279,12680380], storiesPerPage: 1, forceSelected: 0});
-    const prevButton = component.find(ReactPaginate).childAt(0);
-    const numberTwo = component.find(ReactPaginate).childAt(2);
-    const navBarButton = component.find(NavBar).childAt(0).childAt(0).childAt(3);
+  it('forces you back to the first page when you switch stories', () => {
+    wrapper.setState({stories: [12680329, 12677279,12680380], storiesPerPage: 1, forceSelected: 0});
+    const prevButton = wrapper.find(ReactPaginate).childAt(0);
+    const numberTwo = wrapper.find(ReactPaginate).childAt(2);
+    const navBarButton = wrapper.find(NavBar).childAt(0).childAt(0).childAt(3);
     //the prevButton is disabled when the first page is selected
     //a selected page also has the 'selected' class but for some reason the enzyme methods weren't giving me the correct assertion
     expect(prevButton.hasClass('disabled')).to.be.true;

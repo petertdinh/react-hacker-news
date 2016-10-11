@@ -1,36 +1,41 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
+import App from '../../src/components/app';
 import NavBar from '../../src/components/nav_bar';
 
+const fillerFunc = () => {};
+
 describe('NavBar' , () => {
-	let mountedComponent;
-  let shallowComponent;
+	let mountedWrapper;
+  let shallowWrapper;
 
 	beforeEach(() => {
-		mountedComponent = mount(<NavBar />);
-    shallowComponent = shallow(<NavBar />);
+		mountedWrapper = mount(<NavBar 
+                            setActiveStories={fillerFunc} />);
+    shallowWrapper = shallow(<NavBar 
+                              setActiveStories={fillerFunc} />);
 	});
 
   it('to be a nav element', () => {
-    expect(shallowComponent.type()).to.equal('nav');
+    expect(shallowWrapper.type()).to.equal('nav');
   });
 
   it('uses Bootstrap NavBar classes', () => {
-    expect(shallowComponent.hasClass('navbar-default')).to.be.true;
+    expect(shallowWrapper.hasClass('navbar-default')).to.be.true;
   });
 
   it('lets the user navigate between six of the stories', () => {
-    expect(mountedComponent.childAt(0).childAt(0).childAt(2).text()).to.be.equal('Top');
-    expect(mountedComponent.childAt(0).childAt(0).childAt(3).text()).to.be.equal('New');
-    expect(mountedComponent.childAt(0).childAt(0).childAt(4).text()).to.be.equal('Best');
-    expect(mountedComponent.childAt(0).childAt(0).childAt(5).text()).to.be.equal('Ask');
-    expect(mountedComponent.childAt(0).childAt(0).childAt(6).text()).to.be.equal('Show');
-    expect(mountedComponent.childAt(0).childAt(0).childAt(7).text()).to.be.equal('Job');
+    expect(mountedWrapper.childAt(0).childAt(0).childAt(2).text()).to.be.equal('Top');
+    expect(mountedWrapper.childAt(0).childAt(0).childAt(3).text()).to.be.equal('New');
+    expect(mountedWrapper.childAt(0).childAt(0).childAt(4).text()).to.be.equal('Best');
+    expect(mountedWrapper.childAt(0).childAt(0).childAt(5).text()).to.be.equal('Ask');
+    expect(mountedWrapper.childAt(0).childAt(0).childAt(6).text()).to.be.equal('Show');
+    expect(mountedWrapper.childAt(0).childAt(0).childAt(7).text()).to.be.equal('Job');
   });
 
   it('allows us to set props', () => {
-    mountedComponent.setProps({id: 1});
-    expect(mountedComponent.props().id).to.equal(1);
+    mountedWrapper.setProps({id: 1});
+    expect(mountedWrapper.props().id).to.equal(1);
   });
 });

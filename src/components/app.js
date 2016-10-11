@@ -17,7 +17,7 @@ export default class App extends Component {
 
   componentDidUpdate() {
     //to bring the user to the top of the page on new page select, comment out line to test component
-    ReactDOM.findDOMNode(this).scrollIntoView();
+    // ReactDOM.findDOMNode(this).scrollIntoView();
   }
 
   //users can choose between the top, newest, or best stories. defaults to top on page load

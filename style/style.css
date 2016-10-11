@@ -3,15 +3,12 @@ img {
 }
 
 .title {
+	color: white;
 	margin-right: 1em;
 }
 
 .navbar {
 	background-color: black;
-}
-
-.title {
-	color: white;
 }
 
 .btn {
@@ -29,7 +26,7 @@ img {
 }
 
 .page, .break, .selected {
-	padding: 1em 1em 1em 1em;
+	padding: 1em;
 	cursor: pointer;
 }
 
@@ -61,7 +58,7 @@ img {
 }
 
 ul {
- list-style: none;
+	list-style: none;
 }
 
 .story {

@@ -38,23 +38,24 @@ export default class Story extends Component {
 
   render() {
     return (
-      <div className={this.state.hidden}>
+      <div className={`story ${this.state.hidden}`}>
       	<div className="story-title">
-      		<span>{this.state.storyNum}. </span>
+      		<span><strong>{this.state.storyNum}. </strong></span>
       		<a href={this.state.url}>{this.state.title}</a>
       	</div>
-      	<div className="story-info">
+      	<div>
       		{
       			this.state.comments === 0 ?
-      			<div>
+      			<div className="story-info">
 	      			<span>{`${this.state.score} points by `}</span>
 	      			<a href={`https://news.ycombinator.com/user?id=${this.state.author}`}>{this.state.author}</a>
 	      			<span>{` ${moment.unix(this.state.time).fromNow()}`}</span>
 	      		</div> : 
-      			<div>
+      			<div className="story-info">
 	      			<span>{`${this.state.score} points by `}</span>
 	      			<a href={`https://news.ycombinator.com/user?id=${this.state.author}`}>{this.state.author}</a>
-	      			<span>{` ${moment.unix(this.state.time).fromNow()} | ${this.state.comments} comments |`}</span>
+	      			<span>{` ${moment.unix(this.state.time).fromNow()} `}</span>
+	      			<span>| <a href={`https://news.ycombinator.com/item?id=${this.state.id}`}>{`${this.state.comments} comments`}</a> |</span>
 	      		</div>
       		}
       	</div>

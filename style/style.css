@@ -64,6 +64,10 @@ ul {
  list-style: none;
 }
 
+.story {
+	color: grey;
+}
+
 .story-title {
 	font-size: .9em;
 }

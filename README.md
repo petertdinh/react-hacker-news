@@ -8,8 +8,8 @@
 	> npm run test or test:watch
 ```
 
-This is a SPA implementation of the Hacker News website. Users
-can choose between six of the stories provided by the HN API built using React. Application runs off of a webpack-dev server as all XMLHttpRequests are done
+This is a SPA implementation of the Hacker News website built using React. Users
+can choose between six of the stories provided by the HN API. Application runs off of a webpack-dev server as all XMLHttpRequests are done
 client side.
 
 Libraries/Modules:

@@ -4,7 +4,7 @@ import moment from 'moment';
 export default class Story extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { id: 0, title: '', url: '', score: 0, author: '', time: 0, comments: 0, storyNum: 0, hidden: 'hidden', wait: 900 }
+		this.state = { id: 0, title: '', url: '', score: 0, author: '', time: 0, numComments: 0, storyNum: 0, hidden: 'hidden', wait: 900 }
 	}
 
 	componentDidMount() {
@@ -25,8 +25,9 @@ export default class Story extends Component {
 			.then(json => {
 				const { id, title, url, score, by, descendants, time } = json, { storyNum } = props;
 				//when a story isn't linked to an external site, no url is provided, so we redirect them to the comments page
-				url ? this.setState({ url }) : this.setState({url: `https://news.ycombinator.com/item?id=${id}`})
-				this.setState({id, title, score, time, storyNum, author: by, comments: descendants});
+				url ? this.setState({ url }) : this.setState({url: `https://news.ycombinator.com/item?id=${id}`});
+				//job stories don't have comments, this check is to prevent undefined comments
+				descendants ? this.setState({id, title, score, time, storyNum, author: by, numComments: descendants}) : this.setState({id, title, score, time, storyNum, author: by, numComments: 0});
 			});
 	}
 
@@ -38,6 +39,8 @@ export default class Story extends Component {
 	}
 
   render() {
+  	//first conditional - line 50 to check to see if there are any comments in a story. if there are, display comments otherwise exclude it
+  	//second conditional - line 61 to check whether or not we needed to pluralize 'comment'
     return (
       <div className={`story ${this.state.hidden}`}>
       	<div className="story-title">
@@ -46,7 +49,7 @@ export default class Story extends Component {
       	</div>
       	<div>
       		{
-      			this.state.comments === 0 ?
+      			this.state.numComments === 0 ?
       			<div className="story-info">
 	      			<span>{`${this.state.score} points by `}</span>
 	      			<a href={`https://news.ycombinator.com/user?id=${this.state.author}`}>{this.state.author}</a>
@@ -56,7 +59,7 @@ export default class Story extends Component {
 	      			<span>{`${this.state.score} points by `}</span>
 	      			<a ref="author" href={`https://news.ycombinator.com/user?id=${this.state.author}`}>{this.state.author}</a>
 	      			<span>{` ${moment.unix(this.state.time).fromNow()} `}</span>
-	      			<span>| <a ref="comments" href={`https://news.ycombinator.com/item?id=${this.state.id}`}>{this.state.comments === 1 ? `${this.state.comments} comment` : `${this.state.comments} comments` }</a> |</span>
+	      			<span>| <a ref="comments" href={`https://news.ycombinator.com/item?id=${this.state.id}`}>{this.state.numComments === 1 ? `${this.state.numComments} comment` : `${this.state.numComments} comments` }</a> |</span>
 	      		</div>
       		}
       	</div>

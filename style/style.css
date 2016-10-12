@@ -47,7 +47,7 @@ img {
 
 .previous, .next {
 	color: cyan;
-	padding: 1em 1em 1em 1em;
+	padding: 1em;
 	font-size: 1em;
 	cursor: pointer;
 }

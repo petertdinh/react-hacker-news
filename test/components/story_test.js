@@ -38,7 +38,7 @@ describe('Story' , () => {
   });
 
   it('links to external sources', () => {
-    wrapper.setState({id: 1, author: 'pg', url: 'http://ycombinator.com', comments: 1});
+    wrapper.setState({id: 1, author: 'pg', url: 'http://ycombinator.com', numComments: 1});
     expect(wrapper.ref('title').prop('href')).to.equal('http://ycombinator.com');
     expect(wrapper.ref('author').prop('href')).to.equal('https://news.ycombinator.com/user?id=pg')
     expect(wrapper.ref('comments').prop('href')).to.equal('https://news.ycombinator.com/item?id=1');

@@ -33,8 +33,10 @@ export default class App extends Component {
         .then(resp => resp.json())
         .then(json => this.setState({ stories: json }));
       this.toggleLoader();
+      //API endpoint for job stories is singular, wanted the button to be plural
+      type === 'job' ? this.setState({currentStories: 'jobs'}) : this.setState({currentStories: type});
       //send user back to the first 30 stories on selection
-      this.setState({currentStories: type, currentPage: 0, forceSelected: 0});
+      this.setState({currentPage: 0, forceSelected: 0});
     }
   }
 

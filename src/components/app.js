@@ -4,6 +4,7 @@ import { animateScroll } from 'react-scroll';
 import ReactPaginate from 'react-paginate';
 import Story from './story';
 import NavBar from './nav_bar';
+import StoryList from './story_list';
 
 export default class App extends Component {
 	constructor(props) {
@@ -50,24 +51,16 @@ export default class App extends Component {
   }
 
   render() {
-  	let startingPoint = this.state.currentPage * this.state.storiesPerPage;
-  	const currentStoriesOnPage = this.state.stories.slice(startingPoint, startingPoint + this.state.storiesPerPage);
-  	const renderedStories = currentStoriesOnPage.map((story, index) => {
-  		return ( 
-  			<Story
-					key={index}
-          storyNum={index+startingPoint+1}
-					id={story} /> 
-  		);
-  	});
-
     return (
       <div>
       	<NavBar 
           setActiveStories={this.setActiveStories}
           active={this.state.currentStories} />
         <div className={`loader ${this.state.hidden}`}></div>
-      	<div>{renderedStories}</div>
+      	<StoryList 
+          stories={this.state.stories}
+          currentPage={this.state.currentPage}
+          storiesPerPage={this.state.storiesPerPage} />
       	<ReactPaginate 
       		previousLabel="<"
       		nextLabel=">" 

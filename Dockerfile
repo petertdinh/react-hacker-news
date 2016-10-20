@@ -5,6 +5,7 @@ ADD . /code
 
 WORKDIR /code
 RUN npm install
+RUN webpack
 
 EXPOSE 8080
 CMD ["npm", "start"]
